@@ -5,7 +5,21 @@
 ## 패키지 목록 (폴더 구조)
 
 ---
-[사진 첨부]
+![img.png](img.png)
+- controller
+  - RacingCarController : 전반적인 프로그램 흐름을 컨트롤
+- entity
+  - Car : 입력받은 각각의 자동차 개체로, 게임 참여자로 취급 됨
+  - Game : 게임 참여자가 참여하는 게임의 흐름을 담당
+- service
+  - CarService : Car가 수행할 기능을 담당
+  - GameService : Game이 수행할 기능을 담당
+- view
+  - InputView : 입력받기 위한 안내문 출력
+  - OutputView : 게임을 진행하기 위한 안내문 출력
+  - ValidatorOutputView : 예외 처리에 대한 안내문 출력
+
+<br>
 
 ## 🚀 기능 목록
 
