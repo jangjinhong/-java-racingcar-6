@@ -8,6 +8,7 @@ public class OutputView {
     static final String FINAL_WINNER_MESSAGE = "최종 우승자 : ";
     static final String OUTPUT_TEMPLATE = " : ";
 
+
     public static void executionResultInfoMessage() {
         System.out.println();
         System.out.println(EXECUTION_RESULT_MESSAGE);
@@ -27,5 +28,9 @@ public class OutputView {
     public static void printWinner(ArrayList<String> winnerCars) {
         String result = String.join(", ", winnerCars);
         System.out.println(result);
+    }
+
+    public static void getRetryInputCarNamesMessage() {
+        System.out.println(ValidatorOutputView.RETRY_INPUT_CAR_NAMES_MESSAGE);
     }
 }

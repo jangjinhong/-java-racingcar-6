@@ -2,10 +2,12 @@ package racingcar.service;
 
 import racingcar.entity.Car;
 import racingcar.entity.Game;
+import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import racingcar.view.ValidatorOutputView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -38,14 +40,22 @@ public class GameService {
         return winnerCars;
     }
 
-    // 예외 처리 여부 판별
+
     public String[] promptForStringCarNames(String stringCarNames) {
         String[] arrCarNames = stringCarNames.split(",");
-        if(!checkOrLess(arrCarNames) || !checkUniqueCarNames(arrCarNames)) {
-            ValidatorOutputView.NotFiveorLessErrorMessage();
-            throw new IllegalArgumentException();
+        checkExceptionHandling(arrCarNames);
+
+        if(arrCarNames.length == 1) {
+            return handleReEntryForSingleCarName();
         }
         return arrCarNames;
+    }
+
+    private String[] handleReEntryForSingleCarName() {
+        throw new IllegalArgumentException();
+        //OutputView.getRetryInputCarNamesMessage();
+        //String retryInput = InputView.displayCarNamesMessage();
+        //return promptForStringCarNames(retryInput);
     }
 
     public Game createGameFromStrings(String[] arrCarNames, String stringMoveCount) {
@@ -64,7 +74,33 @@ public class GameService {
         return Integer.parseInt(stringMoveCount);
     }
 
+    // 예외 처리 여부 판별
+    public boolean checkExceptionHandling(String[] arrCarNames) {
+        if(!checkOrLess(arrCarNames) || !checkUniqueCarNames(arrCarNames)) {
+            ValidatorOutputView.NotFiveorLessErrorMessage();
+            throw new IllegalArgumentException();
+        }
+
+
+        return true;
+    }
+
     /* ---- 예외처리 함수 ---- */
+    /*private String checkisItMultipleCars(String[] carNames) {
+        if(!isItMultipleCars(carNames))
+            return InputView.getRetryInputCarNamesMessage();
+        return carNames;
+    }
+    private String isItMultipleCars(String[] carNames) {
+        if(carNames.length == 1)
+            return InputView.getRetryInputCarNamesMessage();
+    }*/
+
+    private boolean checkUniqueCarNames(String[] carNames) {
+        Set<String> carNamesSet = new HashSet<>(Arrays.asList(carNames));
+        return carNamesSet.size() == carNames.length;
+    }
+
     private boolean checkOrLess(String[] carNames) {
         for(int i=0; i<carNames.length; i++) {
             if(!isOrLess(carNames[i]))
@@ -74,16 +110,6 @@ public class GameService {
     }
     private boolean isOrLess(String carName) {
         if(carName.length() > 5)
-            return false;
-        return true;
-    }
-
-    private boolean checkUniqueCarNames(String[] carNames) {
-        Set<String> carNamesSet = new HashSet<>();
-        for(int i=0; i<carNames.length; i++)
-            carNamesSet.add(carNames[i]);
-
-        if(carNamesSet.size() != carNames.length)
             return false;
         return true;
     }
