@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class GameService {
-    public Game createGame(Car[] cars, int moveCount) {
+    public Game createGame(ArrayList<Car> cars, int moveCount) {
         Game game = new Game(cars, moveCount);
         return game;
     }
@@ -22,7 +22,7 @@ public class GameService {
 
     public ArrayList<String> calculateWinners(Game game) {
         ArrayList<String> winnerCars = new ArrayList<>();
-        Car[] cars = game.getCars();
+        ArrayList<Car> cars = game.getCars();
         int maxMovementStatus = 0;
 
         for(Car car : cars) {
@@ -54,10 +54,10 @@ public class GameService {
     }
 
     /* ---- Convert function ---- */
-    public Car[] arrStringToCars(String[] arrCarNames) {
-        Car[] cars = new Car[arrCarNames.length];
+    public ArrayList<Car> arrStringToCars(String[] arrCarNames) {
+        ArrayList<Car> cars = new ArrayList<>();
         for(int i=0; i<arrCarNames.length; i++)
-            cars[i] = new Car(arrCarNames[i]);
+            cars.add(new Car(arrCarNames[i]));
         return cars;
     }
     public int convertStringToMoveCount(String stringMoveCount) {

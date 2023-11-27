@@ -1,15 +1,18 @@
 package racingcar.entity;
 
+import java.util.ArrayList;
+
 public class Game {
     private int moveCount;
-    private Car[] cars;
+    private ArrayList<Car> cars;
+    //private Car[] cars;
 
-    public Game(Car[] cars, int moveCount) {
+    public Game(ArrayList<Car> cars, int moveCount) {
         this.cars = cars;
         this.moveCount = moveCount;
     }
 
-    public Car[] getCars() {
+    public ArrayList<Car> getCars() {
         return cars;
     }
 

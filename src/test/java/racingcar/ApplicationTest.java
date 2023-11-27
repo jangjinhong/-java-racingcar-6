@@ -35,12 +35,11 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 이름이_중복일경우_예외_처리() {
-        String[] duplicateCarName = {"Car1", "Car2", "Car3", "Car4", "Car4"};
-
+        String duplicateCarName = "Car1,Car2,Car3,Car4,Car4";
         GameService gameService = new GameService();
 
         assertThrows(IllegalArgumentException.class,
-                () -> gameService.createGameFromStrings(duplicateCarName, "5"));
+                () -> gameService.promptForStringCarNames(duplicateCarName));
     }
 
     @Override

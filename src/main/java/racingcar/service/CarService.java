@@ -6,6 +6,8 @@ import racingcar.entity.Game;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
+
 public class CarService {
     GameService gameService = new GameService();
 
@@ -17,11 +19,11 @@ public class CarService {
         gameService.getWinner(game);
     }
 
-    private void getRandomNumberValues(Car[] cars) {
-        for(int i = 0; i < cars.length; i++) {
+    private void getRandomNumberValues(ArrayList<Car> cars) {
+        for(int i = 0; i < cars.size(); i++) {
             int randomNumber = generateRandomNumber();
             if(randomNumber >= 4)
-                moveCar(cars[i]);
+                moveCar(cars.get(i));
             if(randomNumber < 4)
                 stopCar();
         }
@@ -36,7 +38,7 @@ public class CarService {
         car.addMovementStatus();
     }
 
-    private void getCarStatus(Car[] cars) {
+    private void getCarStatus(ArrayList<Car> cars) {
         OutputView.printCarRacingSituation(cars);
     }
 

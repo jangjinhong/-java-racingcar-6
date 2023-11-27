@@ -16,7 +16,7 @@ public class OutputView {
         System.out.print(FINAL_WINNER_MESSAGE);
     }
 
-    public static void printCarRacingSituation(Car[] cars) {
+    public static void printCarRacingSituation(ArrayList<Car> cars) {
         for(Car car : cars) {
             System.out.print(car.getCarName() + OUTPUT_TEMPLATE);
             System.out.println(car.getMovementStatus());
