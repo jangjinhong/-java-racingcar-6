@@ -1,8 +1,12 @@
 package racingcar;
 
 import camp.nextstep.edu.missionutils.test.NsTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.service.GameService;
+import racingcar.view.OutputView;
+import racingcar.view.ValidatorOutputView;
 
 import java.util.NoSuchElementException;
 
@@ -16,6 +20,7 @@ class ApplicationTest extends NsTest {
     private static final int MOVING_FORWARD = 4;
     private static final int STOP = 3;
 
+    @BeforeEach
     @Test
     void 전진_정지() {
         // 무작위로 생성된 숫자가 특정 범위 내에 있는지 확인하는 테스트 메서드 호출
@@ -40,20 +45,29 @@ class ApplicationTest extends NsTest {
 
     @Test
     void 이름이_중복일경우_예외_처리() {
-        String duplicateCarName = "Car1,Car2,Car3,Car4,Car4";
-        GameService gameService = new GameService();
-
-        assertThrows(IllegalArgumentException.class,
-                () -> gameService.promptForStringCarNames(duplicateCarName));
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("pobi,woni,abc,woni", "1"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+        //String[] duplicateCarName = {"Car1","Car2", "Car3","Car4","Car4"};
+        //assertThrows(IllegalArgumentException.class,
+        //        () -> run("pobi,woni,abc,woni")); //gameService.checkExceptionHandling(duplicateCarName));
     }
 
     @Test
     void 이름_1개일경우_예외_처리() {
+        assertSimpleTest(() ->
+                assertThatThrownBy(() -> runException("pobi", "1"))
+                        .isInstanceOf(IllegalArgumentException.class)
+        );
+        /*
         String carName = "Car1";
         GameService gameService = new GameService();
 
-        assertThrows(IllegalArgumentException.class,
+        assertThrows(NoSuchElementException.class,
                 () -> gameService.promptForStringCarNames(carName));
+
+         */
     }
 
     @Override

@@ -13,7 +13,7 @@ public class OutputView {
         System.out.println();
         System.out.println(EXECUTION_RESULT_MESSAGE);
     }
-    public static void finalWinnerInfoMessage() {
+    public static void printFinalWinnerInfoMessage() {
         System.out.print(FINAL_WINNER_MESSAGE);
     }
 
@@ -30,7 +30,6 @@ public class OutputView {
         System.out.println(result);
     }
 
-    public static void getRetryInputCarNamesMessage() {
-        System.out.println(ValidatorOutputView.RETRY_INPUT_CAR_NAMES_MESSAGE);
-    }
+
+
 }
