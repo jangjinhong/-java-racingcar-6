@@ -80,6 +80,8 @@ public class GameService {
 
     private String[] handleReEntryForSingleCarName() {
         throw new IllegalArgumentException(ValidatorOutputView.getRetryInputCarNamesMessage());
+        //String retryInput = InputView.displayCarNamesMessage();
+        //return promptForStringCarNames(retryInput);
     }
 
     /* ---- 예외처리 함수 ---- */

@@ -8,7 +8,6 @@ public class OutputView {
     static final String FINAL_WINNER_MESSAGE = "최종 우승자 : ";
     static final String OUTPUT_TEMPLATE = " : ";
 
-
     public static void executionResultInfoMessage() {
         System.out.println();
         System.out.println(EXECUTION_RESULT_MESSAGE);
@@ -29,7 +28,4 @@ public class OutputView {
         String result = String.join(", ", winnerCars);
         System.out.println(result);
     }
-
-
-
 }
