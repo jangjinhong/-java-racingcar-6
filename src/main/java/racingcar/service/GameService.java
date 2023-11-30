@@ -2,7 +2,7 @@ package racingcar.service;
 
 import racingcar.entity.Car;
 import racingcar.entity.Game;
-import racingcar.view.InputView;
+import racingcar.utils.Convert;
 import racingcar.view.OutputView;
 import racingcar.view.ValidatorOutputView;
 
@@ -49,20 +49,10 @@ public class GameService {
     }
 
     public Game createGameFromStrings(String[] arrCarNames, String stringMoveCount) {
-       int moveCount = convertStringToMoveCount(stringMoveCount);
-       return createGame(arrStringToCars(arrCarNames), moveCount);
+       int moveCount = Convert.convertStringToMoveCount(stringMoveCount);
+       return createGame(Convert.arrStringToCars(arrCarNames), moveCount);
     }
 
-    /* ---- Convert function ---- */
-    private ArrayList<Car> arrStringToCars(String[] arrCarNames) {
-        ArrayList<Car> cars = new ArrayList<>();
-        for(int i=0; i<arrCarNames.length; i++)
-            cars.add(new Car(arrCarNames[i]));
-        return cars;
-    }
-    private int convertStringToMoveCount(String stringMoveCount) {
-        return Integer.parseInt(stringMoveCount);
-    }
 
     // 예외 처리 여부 판별
     private boolean checkExceptionHandling(String[] arrCarNames) {
@@ -77,14 +67,13 @@ public class GameService {
         }
         return true;
     }
+    /* ---- 예외처리 함수 ---- */
+
 
     private String[] handleReEntryForSingleCarName() {
         throw new IllegalArgumentException(ValidatorOutputView.getRetryInputCarNamesMessage());
-        //String retryInput = InputView.displayCarNamesMessage();
-        //return promptForStringCarNames(retryInput);
     }
 
-    /* ---- 예외처리 함수 ---- */
     /*private String checkisItMultipleCars(String[] carNames) {
         if(!isItMultipleCars(carNames))
             return InputView.getRetryInputCarNamesMessage();
@@ -96,10 +85,9 @@ public class GameService {
     }*/
 
     private boolean checkUniqueCarNames(String[] carNames) {
-        Set<String> carNamesSet = new HashSet<>(); //(Arrays.asList(carNames));
+        Set<String> carNamesSet = new HashSet<>(Arrays.asList(carNames));
         for(String carName : carNames)
             carNamesSet.add(carName);
-
         if(carNamesSet.size() == carNames.length)
             return true;
         return false;
